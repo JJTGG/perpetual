@@ -1,0 +1,73 @@
+name: CI
+# Gate for every human change. If a broken commit lands on main anyway,
+# the self-heal job tries an AI patch (optional) and otherwise reverts it.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run typecheck
+      - run: npm run test:unit
+      - run: npx vitest run tests/integration --reporter=default --reporter=json --outputFile=test-report.json
+      - run: npx next build
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: test-report
+          path: test-report.json
+          if-no-files-found: ignore
+
+  self-heal:
+    needs: verify
+    if: failure() && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Try AI patch, otherwise revert the breaking commit
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "perpetual-bot"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          npx vitest run --reporter=json --outputFile=test-report.json || true
+          fixed=""
+          if [ -n "${ANTHROPIC_API_KEY:-}" ]; then
+            npx tsx scripts/ai-fix.ts
+            if ! git diff --quiet && npm run -s verify && npx next build; then
+              git add -A src tests && git commit -m "self-heal: AI patch for ${GITHUB_SHA::7} [deploy]" && fixed="ai"
+            else
+              git checkout -- .
+            fi
+          fi
+          if [ -z "$fixed" ]; then
+            git revert --no-edit "$GITHUB_SHA"
+            git commit --amend -m "self-heal: revert ${GITHUB_SHA::7} (failed CI) [deploy]"
+            fixed="revert"
+          fi
+          git pull --rebase origin main && git push origin HEAD:main
+          printf '\n## %s · self-heal\n- CI failed on %s; resolved by %s\n' "$(date -u +%FT%TZ)" "${GITHUB_SHA::7}" "$fixed" >> changelog.md
+          git commit -am "changelog: self-heal ($fixed)" && git push origin HEAD:main
+          gh issue create --title "Self-heal: ${fixed} for ${GITHUB_SHA::7}" --body "CI failed on ${GITHUB_SHA}. The system applied: ${fixed}. Review: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" || true

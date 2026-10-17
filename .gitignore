@@ -1,0 +1,10 @@
+node_modules
+.next
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+.env*
+pulse-report.json
+test-report.json
+heal-report.json
+ai-fix.patch

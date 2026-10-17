@@ -1,0 +1,73 @@
+name: Pulse
+# Every 15 minutes: fetch → test → self-heal → build gate → changelog → commit.
+# Vercel deploys the pushed commit (its build re-runs the test suite as a final gate).
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: pulse
+  cancel-in-progress: false
+
+jobs:
+  pulse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+
+      - name: Pulse (fetch, test, heal, build, changelog)
+        id: pulse
+        run: bash scripts/pulse.sh
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      - name: Commit and push
+        run: |
+          git config user.name "perpetual-bot"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add -A changelog.md data config src tests package.json package-lock.json
+          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+          msg="pulse: generation ${{ steps.pulse.outputs.generation }}"
+          if [ "${{ steps.pulse.outputs.deploy }}" = "true" ]; then msg="$msg [deploy]"; fi
+          git commit -m "$msg"
+          for i in 1 2 3; do
+            git pull --rebase --autostash origin main && git push origin HEAD:main && exit 0
+            sleep $((i * 5))
+          done
+          echo "::error::push failed after 3 attempts"; exit 1
+
+      - name: Close pulse incident if open
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for n in $(gh issue list --label pulse-failure --state open --json number --jq '.[].number'); do
+            gh issue close "$n" --comment "Recovered in run ${{ github.run_id }}."
+          done
+
+      - name: Open incident
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create pulse-failure --color B60205 --force >/dev/null 2>&1 || true
+          url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          existing=$(gh issue list --label pulse-failure --state open --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "Still failing: $url"
+          else
+            gh issue create --label pulse-failure --title "Pulse could not self-heal" --body "All heal tiers were exhausted. Production keeps serving the last green deployment. Run: $url"
+          fi
