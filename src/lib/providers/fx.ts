@@ -18,6 +18,7 @@ export const fx: Provider<Raw> = {
   id: "fx",
   title: "Dollar board",
   url: "https://open.er-api.com/v6/latest/USD",
+  schema: Schema,
   parse: (input) => Schema.parse(input),
   normalize: (raw, fetchedAt) => ({
     id: "fx",

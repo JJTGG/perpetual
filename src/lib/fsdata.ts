@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import type { Panel } from "./types";
+import type { Adapters } from "./adapters";
 
 // turbopackIgnore: files are traced explicitly via outputFileTracingIncludes in next.config.ts
 const root = () => process.cwd();
@@ -18,6 +19,7 @@ async function readJson<T>(rel: string, fallback: T): Promise<T> {
 
 export const readHealth = () => readJson<Health>("config/health.json", { quarantined: {}, updatedAt: null });
 export const readState = () => readJson<State>("data/state.json", { generation: 0, lastRunAt: null, lastDeploySlot: null, lastGreenSha: null });
+export const readAdapters = () => readJson<Adapters>("config/adapters.json", {});
 export const readSnapshot = (id: string) => readJson<Panel | null>(`data/snapshots/${id}.json`, null);
 
 export async function readChangelog(): Promise<string> {

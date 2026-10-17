@@ -12,16 +12,28 @@ export async function writeJson(rel: string, data: unknown): Promise<void> {
   await writeFile(p(rel), JSON.stringify(data, null, 2) + "\n");
 }
 
-export type ProviderOutcome = { id: string; ok: boolean; error?: string; changes: string[] };
+export type ContractIssue = { path: (string | number)[]; code: string; expected?: string; message: string };
+export type FailureKind = "http" | "network" | "contract" | "invariant";
+export type ProviderOutcome = {
+  id: string;
+  ok: boolean;
+  error?: string;
+  kind?: FailureKind;
+  status?: number;
+  issues?: ContractIssue[];
+  /** where the raw failing payload was saved (gitignored), for drift inference */
+  rawFile?: string;
+  changes: string[];
+};
 export type PulseReport = { at: string; outcomes: ProviderOutcome[] };
-export type HealReport = { actions: string[]; codeRestored: boolean };
+export type HealReport = { actions: string[]; codeRestored: boolean; mode?: string; trace?: string[] };
 
 /** Vitest JSON reporter (subset). */
 export type TestReport = {
   numPassedTests: number;
   numFailedTests: number;
   success: boolean;
-  testResults: { name: string; status: string; assertionResults: { fullName: string; status: string; failureMessages: string[] }[] }[];
+  testResults: { name: string; status: string; message?: string; assertionResults: { fullName: string; status: string; failureMessages: string[] }[] }[];
 };
 
 export function setOutput(name: string, value: string) {

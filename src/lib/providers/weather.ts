@@ -19,6 +19,7 @@ export const weather: Provider<Raw> = {
   id: "weather",
   title: "Lagos sky",
   url: "https://api.open-meteo.com/v1/forecast?latitude=6.45&longitude=3.39&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&hourly=temperature_2m&forecast_days=1&timezone=Africa%2FLagos",
+  schema: Schema,
   parse: (input) => Schema.parse(input),
   normalize: (raw, fetchedAt) => ({
     id: "weather",

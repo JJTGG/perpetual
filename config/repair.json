@@ -1,0 +1,15 @@
+{
+  "mode": "deterministic",
+  "maxRounds": 6,
+  "maxProbes": 24,
+  "llm": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-4-5",
+    "baseUrl": null,
+    "apiKeyEnv": null,
+    "temperature": 0,
+    "maxAttempts": 2,
+    "maxChangedLines": 80,
+    "allowedPaths": ["src/", "config/adapters.json"]
+  }
+}

@@ -1,6 +1,7 @@
 name: CI
 # Gate for every human change. If a broken commit lands on main anyway,
-# the self-heal job deterministically reverts it.
+# the self-heal job runs the repair engine against the parent commit, and
+# falls back to reverting the commit if the engine cannot reach green.
 on:
   push:
     branches: [main]
@@ -23,6 +24,7 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: npm run typecheck
       - run: npm run test:unit
+      - run: npm run test:engine
       - run: npx vitest run tests/integration --reporter=default --reporter=json --outputFile=test-report.json
       - run: npx next build
       - uses: actions/upload-artifact@v4
@@ -45,15 +47,31 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci --no-audit --no-fund
-      - name: Revert the breaking commit
+      - name: Repair engine (falls back to revert)
         env:
           GH_TOKEN: ${{ github.token }}
+          REPAIR_MODE: ${{ vars.REPAIR_MODE }}
+          LLM_PROVIDER: ${{ vars.LLM_PROVIDER }}
+          LLM_MODEL: ${{ vars.LLM_MODEL }}
+          LLM_BASE_URL: ${{ vars.LLM_BASE_URL }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
         run: |
           git config user.name "perpetual-bot"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
-          git revert --no-edit "$GITHUB_SHA"
-          git commit --amend -m "self-heal: revert ${GITHUB_SHA::7} (failed CI) [deploy]"
-          printf '\n## %s · self-heal\n- CI failed on %s; reverted automatically\n' "$(date -u +%FT%TZ)" "${GITHUB_SHA::7}" >> changelog.md
-          git commit -qam "changelog: self-heal revert of ${GITHUB_SHA::7} [deploy]"
+          short="${GITHUB_SHA::7}"
+          if npx tsx engine/run.ts repair --base="$GITHUB_SHA~1" --no-live --no-restore && npx next build; then
+            how="repair engine: $(node -e 'console.log((require("./heal-report.json").actions||[]).join("; "))')"
+            git add -A src config
+            git commit -m "self-heal: repair ${short} [deploy]"
+          else
+            git checkout -- . && git clean -fdq src config
+            how="revert (engine could not reach green)"
+            git revert --no-edit "$GITHUB_SHA"
+            git commit --amend -m "self-heal: revert ${short} (failed CI) [deploy]"
+          fi
+          printf '\n## %s · self-heal\n- CI failed on %s; resolved by %s\n' "$(date -u +%FT%TZ)" "$short" "$how" >> changelog.md
+          git commit -qam "changelog: self-heal for ${short} [deploy]"
           git pull --rebase origin main && git push origin HEAD:main
-          gh issue create --title "Self-heal: reverted ${GITHUB_SHA::7}" --body "CI failed on ${GITHUB_SHA} and the commit was reverted automatically. Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" || true
+          gh issue create --title "Self-heal for ${short}" --body "$(printf 'CI failed on %s.\n\nResolution: %s\n\n%s\n\nRun: %s' "$GITHUB_SHA" "$how" "$(cat .pulse/repair-trace.md 2>/dev/null)" "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}")" || true

@@ -21,6 +21,8 @@ export interface Provider<Raw = unknown> {
   id: string;
   title: string;
   url: string;
+  /** zod schema of the raw response; introspected by the repair engine */
+  schema: import("zod").ZodType<Raw>;
   /** zod-style parser: throws on contract violations */
   parse: (input: unknown) => Raw;
   normalize: (raw: Raw, fetchedAt: Date) => Panel;

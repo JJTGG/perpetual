@@ -1,24 +1,41 @@
 import type { Panel, PanelResult, Provider } from "./types";
 import { PROVIDERS } from "./providers";
-import { readHealth, readSnapshot } from "./fsdata";
+import { readAdapters, readHealth, readSnapshot } from "./fsdata";
+import { applyAdapter, type Adapters } from "./adapters";
 
 export type FetchLike = (url: string, init?: RequestInit & { next?: { revalidate?: number } }) => Promise<Response>;
 
 export const FETCH_TIMEOUT_MS = 8000;
 
-/** Fetch + validate + normalize one provider. Throws on any failure. */
-export async function fetchPanel(p: Provider<any>, fetchImpl: FetchLike = fetch, now = new Date()): Promise<Panel> {
+export class HttpError extends Error {
+  constructor(public provider: string, public status: number) {
+    super(`${provider}: HTTP ${status}`);
+  }
+}
+
+/** Fetch the raw JSON body. Throws HttpError / network errors. */
+export async function fetchRaw(p: Provider<any>, fetchImpl: FetchLike = fetch): Promise<unknown> {
   const res = await fetchImpl(p.url, {
     headers: { accept: "application/json", "user-agent": "perpetual-app/1.0" },
     signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
     next: { revalidate: 900 },
   });
-  if (!res.ok) throw new Error(`${p.id}: HTTP ${res.status}`);
-  const json: unknown = await res.json();
-  const raw = p.parse(json);
+  if (!res.ok) throw new HttpError(p.id, res.status);
+  return res.json();
+}
+
+/** Adapt → validate → normalize → invariant-check. Throws ZodError or Error. */
+export function panelFromRaw(p: Provider<any>, json: unknown, adapters: Adapters, now: Date): Panel {
+  const raw = p.parse(applyAdapter(json, adapters[p.id]));
   const panel = p.normalize(raw, now);
   assertPanel(panel);
   return panel;
+}
+
+/** Fetch + validate + normalize one provider. Throws on any failure. */
+export async function fetchPanel(p: Provider<any>, fetchImpl: FetchLike = fetch, now = new Date(), adapters?: Adapters): Promise<Panel> {
+  const json = await fetchRaw(p, fetchImpl);
+  return panelFromRaw(p, json, adapters ?? (await readAdapters()), now);
 }
 
 /** Runtime invariant check shared by the app, the pulse job and the tests. */
@@ -34,13 +51,13 @@ export function assertPanel(panel: Panel): void {
 
 /** Never throws: live → last-good snapshot → down. */
 export async function loadPanels(fetchImpl: FetchLike = fetch, now = new Date()): Promise<PanelResult[]> {
-  const health = await readHealth();
+  const [health, adapters] = await Promise.all([readHealth(), readAdapters()]);
   return Promise.all(
     PROVIDERS.map(async (p): Promise<PanelResult> => {
       const quarantine = health.quarantined[p.id];
       if (!quarantine) {
         try {
-          return { status: "live", panel: await fetchPanel(p, fetchImpl, now) };
+          return { status: "live", panel: await fetchPanel(p, fetchImpl, now, adapters) };
         } catch (err) {
           return fallback(p, err instanceof Error ? err.message : String(err));
         }

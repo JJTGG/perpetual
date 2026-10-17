@@ -12,6 +12,7 @@ export const crypto: Provider<Raw> = {
   id: "crypto",
   title: "Crypto tape",
   url: "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd&include_24hr_change=true",
+  schema: Schema,
   parse: (input) => Schema.parse(input),
   normalize: (raw, fetchedAt) => ({
     id: "crypto",

@@ -12,10 +12,12 @@
     "test:unit": "vitest run tests/unit",
     "test:integration": "vitest run tests/integration",
     "verify": "npm run typecheck && npm run test",
-    "vercel-build": "npm run verify && next build",
+    "vercel-build": "npm run typecheck && vitest run tests/unit tests/integration && next build",
     "pulse:refresh": "tsx scripts/refresh.ts",
-    "pulse:heal": "tsx scripts/heal.ts",
-    "pulse:changelog": "tsx scripts/changelog.ts"
+    "pulse:changelog": "tsx scripts/changelog.ts",
+    "test:engine": "vitest run tests/engine",
+    "repair": "tsx engine/run.ts repair",
+    "pulse:housekeeping": "tsx engine/run.ts housekeeping"
   },
   "dependencies": {
     "next": "16.4.2",
@@ -31,5 +33,7 @@
     "typescript": "^5.9",
     "vitest": "4.1.12"
   },
-  "engines": { "node": ">=20" }
+  "engines": {
+    "node": ">=20"
+  }
 }
