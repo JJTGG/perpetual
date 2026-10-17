@@ -2,11 +2,11 @@
   "id": "quakes",
   "title": "Earth tremors",
   "source": "USGS",
-  "fetchedAt": "2026-10-17T17:53:38.924Z",
+  "fetchedAt": "2026-10-17T20:08:27.657Z",
   "metrics": [
     {
       "label": "M2.5+ in 24h",
-      "value": "47"
+      "value": "49"
     },
     {
       "label": "Strongest",
@@ -16,29 +16,29 @@
   ],
   "series": [
     0,
+    5,
     3,
-    0,
+    3,
+    2,
+    2,
+    1,
+    2,
+    3,
+    2,
+    1,
+    3,
     5,
     2,
-    2,
-    3,
-    3,
-    0,
-    3,
-    2,
-    2,
-    1,
-    4,
-    3,
-    3,
-    1,
-    1,
     0,
     1,
-    1,
+    0,
+    2,
+    0,
     2,
     5,
-    0
+    0,
+    0,
+    5
   ],
   "seriesLabel": "Events per hour, last 24h",
   "items": [
@@ -52,12 +52,6 @@
       "title": "86 km SW of Brisas Barra de Suchiate, Mexico",
       "meta": "M5.2",
       "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u309",
-      "weight": 5.2
-    },
-    {
-      "title": "off the coast of Ecuador",
-      "meta": "M5.2",
-      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u2v8",
       "weight": 5.2
     },
     {
@@ -77,6 +71,12 @@
       "meta": "M4.8",
       "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u2xs",
       "weight": 4.8
+    },
+    {
+      "title": "88 km SSW of Uyuni, Bolivia",
+      "meta": "M4.6",
+      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u30x",
+      "weight": 4.6
     }
   ]
 }
