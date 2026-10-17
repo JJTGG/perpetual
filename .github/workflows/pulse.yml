@@ -31,8 +31,6 @@ jobs:
       - name: Pulse (fetch, test, heal, build, changelog)
         id: pulse
         run: bash scripts/pulse.sh
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
       - name: Commit and push
         run: |

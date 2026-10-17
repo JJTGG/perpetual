@@ -9,7 +9,7 @@ A Next.js + TypeScript dashboard that is never finished. It pulls live public da
 | Every 15 min (live site) | Pages re-render with fresh API data (ISR `revalidate = 900`); open browsers call `router.refresh()` on each 15-minute boundary | `src/app/page.tsx`, `src/components/AutoRefresh.tsx` |
 | Every 15 min (pipeline) | Pulse: fetch → unit + integration + live-contract tests → self-heal → build gate → append `changelog.md` → commit | `.github/workflows/pulse.yml`, `scripts/pulse.sh` |
 | Every 3 h | Theme, layout, chart style, panel order and spotlight endpoint (`/api/feed/<id>`) rotate; the pulse marks that commit `[deploy]` | `src/lib/rotation.ts` |
-| Every push / PR | Typecheck, unit, integration, build. A broken commit on `main` is auto-patched (optional AI) or auto-reverted | `.github/workflows/ci.yml` |
+| Every push / PR | Typecheck, unit, integration, build. A broken commit on `main` is auto-reverted | `.github/workflows/ci.yml` |
 | Every Vercel build | `npm run vercel-build` runs the full test suite before `next build`; a failing build never replaces the live deployment | `vercel.json` |
 
 ## Data sources (no API keys)
@@ -23,10 +23,11 @@ Every response is validated with a zod contract and a panel invariant check (`as
 
 ## Self-healing tiers
 
+Healing is fully deterministic. No LLM or generated code is involved; every action is a fixed rule with a predictable result.
+
 1. Data: a feed that fails its fetch or contract is quarantined in `config/health.json`. The UI falls back to the last-good snapshot in `data/snapshots/`. It is released automatically once it passes again. Corrupted snapshots are restored from git.
-2. AI patch (optional): if the repo secret `ANTHROPIC_API_KEY` is set, failing test output plus the source is sent to Claude, the returned diff is applied, and it is kept only if the full suite and build pass.
-3. Code restore: otherwise `src/`, `tests/` and dependencies are restored from `data/state.json → lastGreenSha`, the last commit that passed a full pulse. On a human push, the breaking commit is reverted.
-4. If every tier fails, nothing is committed or deployed. Production keeps serving the last green build, and a `pulse-failure` issue is opened (closed automatically on recovery).
+2. Code restore: otherwise `src/`, `tests/` and dependencies are restored from `data/state.json → lastGreenSha`, the last commit that passed a full pulse. On a human push, the breaking commit is reverted.
+3. If every tier fails, nothing is committed or deployed. Production keeps serving the last green build, and a `pulse-failure` issue is opened (closed automatically on recovery).
 
 ## Deploy volume
 
