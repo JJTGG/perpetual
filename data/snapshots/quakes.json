@@ -2,11 +2,11 @@
   "id": "quakes",
   "title": "Earth tremors",
   "source": "USGS",
-  "fetchedAt": "2026-10-18T00:09:32.189Z",
+  "fetchedAt": "2026-10-18T04:33:06.555Z",
   "metrics": [
     {
       "label": "M2.5+ in 24h",
-      "value": "43"
+      "value": "38"
     },
     {
       "label": "Strongest",
@@ -16,29 +16,29 @@
   ],
   "series": [
     2,
-    2,
     1,
-    2,
+    3,
+    3,
     3,
     2,
     1,
+    0,
+    1,
+    1,
+    1,
+    2,
+    4,
+    0,
+    5,
+    1,
+    1,
     3,
-    5,
+    0,
     2,
     0,
     1,
     0,
-    2,
-    0,
-    2,
-    5,
-    0,
-    0,
-    5,
-    2,
-    2,
-    1,
-    0
+    1
   ],
   "seriesLabel": "Events per hour, last 24h",
   "items": [
@@ -55,10 +55,10 @@
       "weight": 5.2
     },
     {
-      "title": "115 km SW of Puerto Madero, Mexico",
-      "meta": "M4.9",
-      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u2x7",
-      "weight": 4.9
+      "title": "31 km SE of Kainantu, Papua New Guinea",
+      "meta": "M4.8",
+      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u32r",
+      "weight": 4.8
     },
     {
       "title": "110 km NE of Norsup, Vanuatu",
@@ -67,15 +67,15 @@
       "weight": 4.8
     },
     {
-      "title": "196 km SSE of Alo, Wallis and Futuna",
-      "meta": "M4.8",
-      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u2xs",
-      "weight": 4.8
-    },
-    {
       "title": "88 km SSW of Uyuni, Bolivia",
       "meta": "M4.6",
       "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u30x",
+      "weight": 4.6
+    },
+    {
+      "title": "51 km N of Pante Makasar, Timor Leste",
+      "meta": "M4.6",
+      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u2zb",
       "weight": 4.6
     }
   ]
