@@ -2,20 +2,20 @@
   "id": "weather",
   "title": "Lagos sky",
   "source": "Open-Meteo",
-  "fetchedAt": "2026-10-18T13:17:13.548Z",
+  "fetchedAt": "2026-10-18T16:41:58.717Z",
   "metrics": [
     {
       "label": "Temperature",
-      "value": "29.5°C",
-      "hint": "Partly cloudy"
+      "value": "28.2°C",
+      "hint": "Mainly clear"
     },
     {
       "label": "Humidity",
-      "value": "73%"
+      "value": "78%"
     },
     {
       "label": "Wind",
-      "value": "13.2 km/h"
+      "value": "14.5 km/h"
     }
   ],
   "series": [
