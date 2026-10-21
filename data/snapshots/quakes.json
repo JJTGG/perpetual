@@ -2,11 +2,11 @@
   "id": "quakes",
   "title": "Earth tremors",
   "source": "USGS",
-  "fetchedAt": "2026-10-21T04:45:35.994Z",
+  "fetchedAt": "2026-10-21T09:49:46.258Z",
   "metrics": [
     {
       "label": "M2.5+ in 24h",
-      "value": "52"
+      "value": "41"
     },
     {
       "label": "Strongest",
@@ -16,29 +16,29 @@
   ],
   "series": [
     1,
-    5,
-    3,
+    1,
     4,
-    3,
     1,
-    1,
-    2,
-    2,
     2,
     0,
     5,
     2,
     4,
-    0,
-    3,
-    1,
-    0,
-    4,
     1,
     3,
+    0,
     1,
-    2,
-    2
+    3,
+    1,
+    3,
+    1,
+    3,
+    1,
+    1,
+    0,
+    1,
+    1,
+    1
   ],
   "seriesLabel": "Events per hour, last 24h",
   "items": [
@@ -49,21 +49,21 @@
       "weight": 5.4
     },
     {
-      "title": "206 km NW of Port-Olry, Vanuatu",
+      "title": "68 km NE of Cabatuan, Philippines",
       "meta": "M5.2",
-      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u3k5",
+      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u3t6",
       "weight": 5.2
+    },
+    {
+      "title": "164 km NE of Lospalos, Timor Leste",
+      "meta": "M5.1",
+      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u3t4",
+      "weight": 5.1
     },
     {
       "title": "39 km W of Mosteiros, Portugal",
       "meta": "M5.1",
       "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u3p1",
-      "weight": 5.1
-    },
-    {
-      "title": "263 km WSW of Yanglong, China",
-      "meta": "M5.1",
-      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u3ka",
       "weight": 5.1
     },
     {
