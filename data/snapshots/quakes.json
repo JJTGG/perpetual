@@ -2,11 +2,11 @@
   "id": "quakes",
   "title": "Earth tremors",
   "source": "USGS",
-  "fetchedAt": "2026-10-25T17:39:08.219Z",
+  "fetchedAt": "2026-10-25T19:57:44.825Z",
   "metrics": [
     {
       "label": "M2.5+ in 24h",
-      "value": "54"
+      "value": "51"
     },
     {
       "label": "Strongest",
@@ -15,29 +15,29 @@
     }
   ],
   "series": [
-    2,
-    4,
-    1,
-    3,
     3,
     2,
+    3,
     2,
     1,
-    5,
     2,
-    1,
     5,
     1,
-    2,
     3,
     3,
+    1,
     5,
-    3,
+    1,
+    2,
+    6,
+    2,
     0,
     1,
     3,
     0,
     1,
+    3,
+    0,
     1
   ],
   "seriesLabel": "Events per hour, last 24h",
