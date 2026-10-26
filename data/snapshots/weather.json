@@ -2,20 +2,20 @@
   "id": "weather",
   "title": "Lagos sky",
   "source": "Open-Meteo",
-  "fetchedAt": "2026-10-26T11:23:06.470Z",
+  "fetchedAt": "2026-10-26T17:31:40.775Z",
   "metrics": [
     {
       "label": "Temperature",
-      "value": "29.6°C",
-      "hint": "Partly cloudy"
+      "value": "27.9°C",
+      "hint": "Mainly clear"
     },
     {
       "label": "Humidity",
-      "value": "71%"
+      "value": "80%"
     },
     {
       "label": "Wind",
-      "value": "11.4 km/h"
+      "value": "14.8 km/h"
     }
   ],
   "series": [
@@ -26,23 +26,23 @@
     28.2,
     28.1,
     27.8,
-    26.9,
-    28,
-    29.1,
-    28.8,
-    28.6,
-    29.5,
-    29.5,
-    29.5,
-    29.6,
-    29.2,
-    28.9,
+    27.9,
+    27.6,
+    27.1,
     28.2,
+    29.6,
+    30.3,
+    30.4,
+    30.2,
+    29.9,
+    29.3,
+    28.7,
     28.1,
+    27.9,
     27.8,
     27.7,
     27.7,
-    27.3
+    27.7
   ],
   "seriesLabel": "Hourly temperature today (°C)"
 }
