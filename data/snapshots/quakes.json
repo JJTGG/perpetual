@@ -2,11 +2,11 @@
   "id": "quakes",
   "title": "Earth tremors",
   "source": "USGS",
-  "fetchedAt": "2026-10-29T21:18:32.448Z",
+  "fetchedAt": "2026-10-30T01:14:51.731Z",
   "metrics": [
     {
       "label": "M2.5+ in 24h",
-      "value": "40"
+      "value": "39"
     },
     {
       "label": "Strongest",
@@ -15,19 +15,15 @@
     }
   ],
   "series": [
-    2,
-    3,
-    3,
-    2,
+    0,
     1,
-    1,
-    3,
+    4,
     1,
     2,
     0,
     3,
     1,
-    0,
+    1,
     2,
     2,
     1,
@@ -37,6 +33,10 @@
     2,
     1,
     1,
+    1,
+    3,
+    2,
+    2,
     1,
     1
   ],
@@ -49,6 +49,12 @@
       "weight": 6.4
     },
     {
+      "title": "43 km ESE of Port-Olry, Vanuatu",
+      "meta": "M6.2",
+      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu4f",
+      "weight": 6.2
+    },
+    {
       "title": "110 km ENE of Barcelona, Philippines",
       "meta": "M5.8",
       "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttw3",
@@ -58,12 +64,6 @@
       "title": "82 km NE of Kiunga, Papua New Guinea",
       "meta": "M5.7",
       "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttw5",
-      "weight": 5.7
-    },
-    {
-      "title": "271 km WSW of Tual, Indonesia",
-      "meta": "M5.7",
-      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttua",
       "weight": 5.7
     },
     {
