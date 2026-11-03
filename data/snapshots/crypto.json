@@ -2,31 +2,31 @@
   "id": "crypto",
   "title": "Crypto tape",
   "source": "CoinGecko",
-  "fetchedAt": "2026-11-02T20:09:46.696Z",
+  "fetchedAt": "2026-11-03T02:17:59.639Z",
   "metrics": [
     {
       "label": "Bitcoin",
-      "value": "$76,868",
-      "hint": "-1.17% 24h",
+      "value": "$76,904",
+      "hint": "-1.85% 24h",
       "trend": "down"
     },
     {
       "label": "Ether",
       "value": "$2,252",
-      "hint": "-0.23% 24h",
+      "hint": "-1.75% 24h",
       "trend": "down"
     },
     {
       "label": "Solana",
-      "value": "$91.83",
-      "hint": "-2.23% 24h",
+      "value": "$92.02",
+      "hint": "-3.09% 24h",
       "trend": "down"
     }
   ],
   "series": [
-    -1.1679159030695359,
-    -0.2334630191034007,
-    -2.2291382799327377
+    -1.8467279522842015,
+    -1.7454960828772026,
+    -3.0853415507567616
   ],
   "seriesLabel": "24h change (%) — BTC, ETH, SOL"
 }
