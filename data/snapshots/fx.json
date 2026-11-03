@@ -2,7 +2,7 @@
   "id": "fx",
   "title": "Dollar board",
   "source": "ExchangeRate-API",
-  "fetchedAt": "2026-11-03T02:17:59.639Z",
+  "fetchedAt": "2026-11-03T09:51:09.196Z",
   "metrics": [
     {
       "label": "USD → NGN",
