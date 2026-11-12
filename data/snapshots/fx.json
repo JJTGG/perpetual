@@ -2,46 +2,46 @@
   "id": "fx",
   "title": "Dollar board",
   "source": "ExchangeRate-API",
-  "fetchedAt": "2026-11-12T00:29:32.338Z",
+  "fetchedAt": "2026-11-12T07:37:43.729Z",
   "metrics": [
     {
       "label": "USD → NGN",
-      "value": "1,350.42"
+      "value": "1,349.82"
     },
     {
       "label": "USD → GHS",
-      "value": "11.7"
+      "value": "11.71"
     },
     {
       "label": "USD → KES",
-      "value": "129.98"
+      "value": "129.97"
     }
   ],
   "items": [
     {
       "title": "1 USD in NGN",
-      "meta": "1,350.4237"
+      "meta": "1,349.8226"
     },
     {
       "title": "1 USD in GHS",
-      "meta": "11.7034"
+      "meta": "11.7079"
     },
     {
       "title": "1 USD in KES",
-      "meta": "129.9833"
+      "meta": "129.9691"
     },
     {
       "title": "1 USD in ZAR",
-      "meta": "16.501"
+      "meta": "16.5874"
     },
     {
       "title": "1 USD in EUR",
-      "meta": "0.8939"
+      "meta": "0.8999"
     },
     {
       "title": "1 USD in GBP",
-      "meta": "0.7482"
+      "meta": "0.7524"
     }
   ],
-  "seriesLabel": "Rates published Wed, 11 Nov 2026 00:02:32 +0000"
+  "seriesLabel": "Rates published Thu, 12 Nov 2026 00:02:31 +0000"
 }
