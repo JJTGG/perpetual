@@ -2,11 +2,11 @@
   "id": "quakes",
   "title": "Earth tremors",
   "source": "USGS",
-  "fetchedAt": "2026-11-13T02:47:13.463Z",
+  "fetchedAt": "2026-11-13T10:32:03.030Z",
   "metrics": [
     {
       "label": "M2.5+ in 24h",
-      "value": "31"
+      "value": "30"
     },
     {
       "label": "Strongest",
@@ -15,30 +15,30 @@
     }
   ],
   "series": [
-    2,
-    2,
-    1,
-    4,
-    0,
-    2,
-    1,
     1,
     0,
-    0,
-    5,
-    0,
+    3,
     2,
     1,
-    1,
-    0,
     2,
     1,
+    0,
+    1,
+    2,
     1,
     2,
     0,
     1,
     2,
-    0
+    3,
+    3,
+    0,
+    1,
+    0,
+    0,
+    2,
+    0,
+    2
   ],
   "seriesLabel": "Events per hour, last 24h",
   "items": [
@@ -47,12 +47,6 @@
       "meta": "M5.8",
       "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000txwp",
       "weight": 5.8
-    },
-    {
-      "title": "South Sandwich Islands region",
-      "meta": "M5.4",
-      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000txqr",
-      "weight": 5.4
     },
     {
       "title": "39 km S of Moíres, Greece",
@@ -73,9 +67,15 @@
       "weight": 5
     },
     {
-      "title": "41 km N of Weining, China",
+      "title": "southeast of the Loyalty Islands",
       "meta": "M4.9",
-      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000txvw",
+      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000txz3",
+      "weight": 4.9
+    },
+    {
+      "title": "Pagan region, Northern Mariana Islands",
+      "meta": "M4.9",
+      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000txxy",
       "weight": 4.9
     }
   ]
