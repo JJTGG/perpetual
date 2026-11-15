@@ -2,26 +2,19 @@
   "id": "quakes",
   "title": "Earth tremors",
   "source": "USGS",
-  "fetchedAt": "2026-11-15T01:01:56.848Z",
+  "fetchedAt": "2026-11-15T07:51:16.895Z",
   "metrics": [
     {
       "label": "M2.5+ in 24h",
-      "value": "42"
+      "value": "41"
     },
     {
       "label": "Strongest",
       "value": "M5.5",
-      "hint": "northern Mid-Atlantic Ridge"
+      "hint": "Fiji region"
     }
   ],
   "series": [
-    0,
-    2,
-    1,
-    3,
-    0,
-    4,
-    5,
     1,
     2,
     0,
@@ -30,35 +23,36 @@
     2,
     0,
     2,
-    4,
+    3,
     1,
+    2,
     1,
     1,
     1,
     2,
     1,
+    0,
+    2,
+    2,
+    2,
+    5,
+    2,
     1,
     0
   ],
   "seriesLabel": "Events per hour, last 24h",
   "items": [
     {
+      "title": "Fiji region",
+      "meta": "M5.5",
+      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tyca",
+      "weight": 5.5
+    },
+    {
       "title": "northern Mid-Atlantic Ridge",
       "meta": "M5.5",
       "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ty84",
       "weight": 5.5
-    },
-    {
-      "title": "State of Yap, Federated States of Micronesia",
-      "meta": "M5.2",
-      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ty7d",
-      "weight": 5.2
-    },
-    {
-      "title": "off the west coast of northern Sumatra",
-      "meta": "M5.2",
-      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ty6n",
-      "weight": 5.2
     },
     {
       "title": "7 km SE of Tagbina, Philippines",
@@ -73,10 +67,16 @@
       "weight": 4.9
     },
     {
-      "title": "West Chile Rise",
+      "title": "19 km NW of Albardón, Argentina",
       "meta": "M4.8",
-      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ty7b",
+      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tybx",
       "weight": 4.8
+    },
+    {
+      "title": "east central Pacific Ocean",
+      "meta": "M4.7",
+      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tyay",
+      "weight": 4.7
     }
   ]
 }
