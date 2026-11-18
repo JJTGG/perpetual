@@ -2,81 +2,81 @@
   "id": "quakes",
   "title": "Earth tremors",
   "source": "USGS",
-  "fetchedAt": "2026-11-18T00:33:07.111Z",
+  "fetchedAt": "2026-11-18T07:57:24.771Z",
   "metrics": [
     {
       "label": "M2.5+ in 24h",
-      "value": "45"
+      "value": "51"
     },
     {
       "label": "Strongest",
-      "value": "M5.2",
-      "hint": "south of the Kermadec Islands"
+      "value": "M5.9",
+      "hint": "85 km WNW of San Juan, Peru"
     }
   ],
   "series": [
+    2,
+    2,
+    2,
+    2,
+    3,
+    1,
+    3,
+    6,
+    3,
+    1,
+    3,
     0,
     3,
     0,
-    2,
-    2,
-    4,
-    2,
-    2,
     1,
-    4,
     1,
     3,
-    2,
+    1,
     2,
     4,
     3,
-    4,
+    3,
     2,
-    1,
-    1,
-    0,
-    1,
-    0,
-    1
+    0
   ],
   "seriesLabel": "Events per hour, last 24h",
   "items": [
     {
-      "title": "south of the Kermadec Islands",
-      "meta": "M5.2",
-      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tysq",
-      "weight": 5.2
+      "title": "85 km WNW of San Juan, Peru",
+      "meta": "M5.9",
+      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tyy8",
+      "weight": 5.9
     },
     {
-      "title": "137 km SSE of Kirakira, Solomon Islands",
-      "meta": "M5",
-      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tyq5",
-      "weight": 5
+      "title": "40 km N of Ruteng, Indonesia",
+      "meta": "M5.8",
+      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tyxi",
+      "weight": 5.8
     },
     {
-      "title": "135 km S of Vilyuchinsk, Russia",
-      "meta": "M4.9",
-      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tyt4",
-      "weight": 4.9
+      "title": "99 km ESE of Madang, Papua New Guinea",
+      "meta": "M5.8",
+      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tyx2",
+      "weight": 5.8
     },
     {
-      "title": "102 km ENE of Ozernovskiy, Russia",
-      "meta": "M4.9",
-      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tyt3",
-      "weight": 4.9
+      "title": "150 km SW of Merizo Village, Guam",
+      "meta": "M5.8",
+      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tywi",
+      "weight": 5.8
     },
     {
-      "title": "173 km ENE of Noda, Japan",
-      "meta": "M4.9",
-      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tyrw",
-      "weight": 4.9
+      "title": "16 km ESE of Comandău, Romania",
+      "meta": "M5.3",
+      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tyw8",
+      "weight": 5.3
     },
     {
-      "title": "43 km NW of Oxford, New Zealand",
-      "meta": "M4.9",
-      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tyrv",
-      "weight": 4.9
+      "title": "7 km SE of Karakenja, Tajikistan",
+      "meta": "M5.3",
+      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tyw6",
+      "weight": 5.3
     }
   ]
 }
