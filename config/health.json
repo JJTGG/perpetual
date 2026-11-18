@@ -1,4 +1,9 @@
 {
-  "quarantined": {},
-  "updatedAt": "2026-11-17T08:18:40.164Z"
+  "quarantined": {
+    "weather": {
+      "since": "2026-11-18T00:33:40.603Z",
+      "reason": "The operation was aborted due to timeout"
+    }
+  },
+  "updatedAt": "2026-11-18T00:33:40.603Z"
 }
