@@ -2,46 +2,52 @@
   "id": "quakes",
   "title": "Earth tremors",
   "source": "USGS",
-  "fetchedAt": "2026-11-20T18:57:33.697Z",
+  "fetchedAt": "2026-11-21T00:42:02.225Z",
   "metrics": [
     {
       "label": "M2.5+ in 24h",
-      "value": "49"
+      "value": "59"
     },
     {
       "label": "Strongest",
-      "value": "M5.6",
-      "hint": "southeast of the Loyalty Islands"
+      "value": "M6.7",
+      "hint": "9 km NE of Carhuamayo, Peru"
     }
   ],
   "series": [
-    0,
-    4,
-    1,
-    1,
+    2,
     0,
     1,
-    1,
-    1,
-    0,
     1,
     3,
-    5,
-    6,
+    3,
+    7,
     9,
-    0,
-    5,
     3,
+    2,
+    7,
     0,
     1,
-    2,
+    3,
     2,
     1,
     1,
-    1
+    1,
+    3,
+    1,
+    0,
+    2,
+    1,
+    5
   ],
   "seriesLabel": "Events per hour, last 24h",
   "items": [
+    {
+      "title": "9 km NE of Carhuamayo, Peru",
+      "meta": "M6.7",
+      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000ucfm",
+      "weight": 6.7
+    },
     {
       "title": "southeast of the Loyalty Islands",
       "meta": "M5.6",
@@ -53,12 +59,6 @@
       "meta": "M5.4",
       "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000uc82",
       "weight": 5.4
-    },
-    {
-      "title": "South Georgia Island region",
-      "meta": "M5.3",
-      "href": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000uc2q",
-      "weight": 5.3
     },
     {
       "title": "32 km NE of Port-Olry, Vanuatu",
